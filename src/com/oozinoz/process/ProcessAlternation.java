@@ -44,7 +44,7 @@ public class ProcessAlternation extends ProcessComposite {
      * Create an alternation with the given name and containing the given
      * subprocesses.
      */
-    public ProcessAlternation(String name, List subprocesses) {
+    public ProcessAlternation(String name, List<ProcessComponent> subprocesses) {
         super(name, subprocesses);
     }
 

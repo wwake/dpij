@@ -21,9 +21,9 @@ import com.oozinoz.utility.Dollars;
 public class Sparkler extends Firework {
     /**
      * Make a sparkler.
-     * @param String the sparkler's name, understanding that it's hard to get
+     * @param name the sparkler's name, understanding that it's hard to get
      *            really exotic when naming a sparkler
-     * @param double the price
+     * @param price the price
      */
     public Sparkler(String name, Dollars price) {
         super(name, 0.01, price);

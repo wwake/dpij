@@ -30,27 +30,27 @@ import com.oozinoz.process.*;
 public class PrettyVisitor implements ProcessVisitor {
     public static final String INDENT_STRING = "    ";
 
-    private StringBuffer buf;
+    private StringBuilder sb;
     private int depth;
-    private Set visited;
+    private Set<ProcessComponent> visited;
 
     /**
      * @param pc the process component to portray
      * @return a pretty (indented) description of the supplied process component.
      */
-    public StringBuffer getPretty(ProcessComponent pc) {
-        buf = new StringBuffer();
-        visited = new HashSet();
+    public StringBuilder getPretty(ProcessComponent pc) {
+        sb = new StringBuilder();
+        visited = new HashSet<>();
         depth = 0;
         pc.accept(this);
-        return buf;
+        return sb;
     }
 
     protected void printIndentedString(String s) {
         for (int i = 0; i < depth; i++) 
-            buf.append(INDENT_STRING);
-        buf.append(s);
-        buf.append("\n");
+            sb.append(INDENT_STRING);
+        sb.append(s);
+        sb.append("\n");
     }
 
     /**
@@ -93,10 +93,9 @@ public class PrettyVisitor implements ProcessVisitor {
             printIndentedString(prefix + c.getName());
             depth++;
 
-            List children = c.getChildren();
+            List<ProcessComponent> children = c.getChildren();
 
-            for (int i = 0; i < children.size(); i++) {
-                ProcessComponent child = (ProcessComponent) children.get(i);
+            for (ProcessComponent child : children) {
                 child.accept(this);
             }
 

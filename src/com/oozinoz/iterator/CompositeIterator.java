@@ -15,14 +15,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.oozinoz.process.ProcessComponent;
+public class CompositeIterator<E extends AcycliclyIterable<E>> extends ComponentIterator<E> {
+    protected E peek;
+    protected Iterator<E> children;
+    protected ComponentIterator<E> subiterator;
 
-public class CompositeIterator extends ComponentIterator {
-    protected Object peek;
-    protected Iterator children;
-    protected ComponentIterator subiterator;
-
-    public CompositeIterator(Object head, List components, Set visited) {
+    public CompositeIterator(E head, List<E> components, Set<E> visited) {
         super(head, visited);
         children = components.iterator();
     }
@@ -39,9 +37,9 @@ public class CompositeIterator extends ComponentIterator {
         return peek != null;
     }
 
-    public Object next() {
+    public E next() {
         if (peek != null) {
-            Object result = peek;
+            E result = peek;
             peek = null;
             return result;
         }
@@ -61,7 +59,7 @@ public class CompositeIterator extends ComponentIterator {
      * null.) Create an iterator for this child and return this iterator's next
      * element.
      */
-    protected Object nextDescendant() {
+    protected E nextDescendant() {
         while (true) {
             if (subiterator != null) {
                 if (subiterator.hasNext()) return subiterator.next();
@@ -69,7 +67,7 @@ public class CompositeIterator extends ComponentIterator {
 
             if (!children.hasNext()) return null;
 
-            ProcessComponent pc = (ProcessComponent) children.next();
+            E pc = children.next();
             if (!visited.contains(pc)) {
                 subiterator = pc.iterator(visited);
                 subiterator.setShowInterior(shouldShowInterior());

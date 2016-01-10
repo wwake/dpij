@@ -20,7 +20,7 @@ import com.oozinoz.filter.WrapFilter;
  * Show the use of the rake visitor that collects leaves.
  * 
  * @author Steven J. Metsker
- * @see com.oozinoz.dublin.RakeVisitor
+ * @see app.visitor.RakeVisitor
  */
 public class ShowRakeVisitor {
     public static void main(String[] args) throws IOException {

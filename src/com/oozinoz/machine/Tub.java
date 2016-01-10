@@ -63,7 +63,7 @@ public class Tub {
     *  @return true if, according to business rules, this
     *  component and the supplied object refer to the same
     *  thing.
-    * @param o The candidate to compare to
+    * @param obj The candidate to compare to
     */
     public boolean equals(Object obj) {
         if (obj == this)

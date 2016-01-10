@@ -62,16 +62,16 @@ public abstract class Function {
      */
     public String toString() {
         String name = this.getClass().toString();
-        StringBuffer buf = new StringBuffer(name);
+        StringBuilder sb = new StringBuilder(name);
         if (sources.length > 0) {
-            buf.append('(');
+            sb.append('(');
             for (int i = 0; i < sources.length; i++) {
                 if (i > 0)
-                    buf.append(", ");
-                buf.append(sources[i]);
+                    sb.append(", ");
+                sb.append(sources[i]);
             }
-            buf.append(')');
+            sb.append(')');
         }
-        return buf.toString();
+        return sb.toString();
     }
 }

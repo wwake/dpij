@@ -18,7 +18,7 @@ import com.oozinoz.machine.OozinozFactory;
  * Show the use of the FindVisitor class.
  * 
  * @author Steven J. Metsker
- * @see com.oozinoz.dublin.FindVisitor
+ * @see app.visitor.FindVisitor
  */
 public class ShowFindVisitor {
     public static void main(String[] args) {

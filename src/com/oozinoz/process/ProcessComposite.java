@@ -12,6 +12,7 @@ package com.oozinoz.process;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -22,14 +23,14 @@ import com.oozinoz.iterator.CompositeIterator;
  * Represent either an alternation or a sequence of process steps.
  */
 public abstract class ProcessComposite extends ProcessComponent {
-    protected List subprocesses;
+    protected List<ProcessComponent> subprocesses;
 
     /**
      * Create a process composite with the given name.
      * @param name this process composite's name
      */
     public ProcessComposite(String name) {
-        this(name, new ArrayList());
+        this(name, new ArrayList<ProcessComponent>());
     }
 
     /**
@@ -40,9 +41,8 @@ public abstract class ProcessComposite extends ProcessComponent {
      */
     public ProcessComposite(String name, ProcessComponent[] existingProcesses) {
         super(name);
-        subprocesses = new ArrayList();
-        for (int i = 0; i < existingProcesses.length; i++)
-            subprocesses.add(existingProcesses[i]);
+        subprocesses = new ArrayList<>();
+        Collections.addAll(subprocesses, existingProcesses);
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class ProcessComposite extends ProcessComponent {
      * @param name the identity of this composite
      * @param subprocesses the children of this composite
      */
-    public ProcessComposite(String name, List subprocesses) {
+    public ProcessComposite(String name, List<ProcessComponent> subprocesses) {
         super(name);
         this.subprocesses = subprocesses;
     }
@@ -59,7 +59,7 @@ public abstract class ProcessComposite extends ProcessComponent {
     /**
      * @return the children of this composite.
      */
-    public List getChildren() {
+    public List<ProcessComponent> getChildren() {
         return subprocesses;
     }
 
@@ -71,8 +71,8 @@ public abstract class ProcessComposite extends ProcessComponent {
         subprocesses.add(c);
     }
 
-    public ComponentIterator iterator(Set visited) {
-        return new CompositeIterator(this, subprocesses, visited);
+    public ComponentIterator<ProcessComponent> iterator(Set<ProcessComponent> visited) {
+        return new CompositeIterator<>(this, subprocesses, visited);
     }
 
     /**
@@ -80,13 +80,13 @@ public abstract class ProcessComposite extends ProcessComponent {
      *         represents.
      * @param visited components already visited while traversing this component
      */
-    public int getStepCount(Set visited) {
+    public int getStepCount(Set<String> visited) {
         visited.add(getName());
         int count = 0;
-        for (int i = 0; i < subprocesses.size(); i++) {
-            ProcessComponent pc = (ProcessComponent) subprocesses.get(i);
-            if (!visited.contains(pc.getName()))
-                    count += pc.getStepCount(visited);
+        for (ProcessComponent pc : subprocesses) {
+            if (!visited.contains(pc.getName())) {
+                count += pc.getStepCount(visited);
+            }
         }
         return count;
     }

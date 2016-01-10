@@ -18,11 +18,11 @@ import java.util.*;
  * exception.
  */
 public class ShowConcurrentIterator implements Runnable {
-    private List list;
+    private List<String> list;
 
-    protected static List upMachineNames() {
-        return new ArrayList(Arrays.asList(new String[] { "Mixer1201",
-                "ShellAssembler1301", "StarPress1401", "UnloadBuffer1501" }));
+    protected static List<String> upMachineNames() {
+        return new ArrayList<>(Arrays.asList("Mixer1201",
+                "ShellAssembler1301", "StarPress1401", "UnloadBuffer1501"));
     }
 
     public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class ShowConcurrentIterator implements Runnable {
 
     protected void go() {
         list = Collections.synchronizedList(upMachineNames());
-        Iterator iter = list.iterator();
+        Iterator<String> iter = list.iterator();
         int i = 0;
         while (iter.hasNext()) {
             i++;

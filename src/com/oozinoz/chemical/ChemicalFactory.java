@@ -18,7 +18,7 @@ import java.util.*;
  * to make Chemical an interface.
  */
 public class ChemicalFactory {
-    private static Map chemicals = new HashMap();
+    private static Map<String, Chemical> chemicals = new HashMap<>();
 
     static {
         chemicals.put("carbon", new Chemical("Carbon", "C", 12));
@@ -33,6 +33,6 @@ public class ChemicalFactory {
      * @return the Chemical object for the given name.
      */
     public static Chemical getChemical(String name) {
-        return (Chemical) chemicals.get(name.toLowerCase());
+        return chemicals.get(name.toLowerCase());
     }
 }

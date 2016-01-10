@@ -22,8 +22,8 @@ import javax.swing.*;
  * @see LoadingImageIcon
  */
 public class ImageIconProxy extends ImageIcon implements Runnable {
-    static final ImageIcon ABSENT = new ImageIcon(ClassLoader.getSystemResource("images/absent.jpg"));
-    static final ImageIcon LOADING = new ImageIcon(ClassLoader.getSystemResource("images/loading.jpg"));
+    static final ImageIcon ABSENT = new ImageIcon(ClassLoader.getSystemResource("resources/images/absent.jpg"));
+    static final ImageIcon LOADING = new ImageIcon(ClassLoader.getSystemResource("resources/images/loading.jpg"));
     ImageIcon current = ABSENT;
     protected String filename;
     protected JFrame callbackFrame;
@@ -40,7 +40,7 @@ public class ImageIconProxy extends ImageIcon implements Runnable {
 
     /**
      * Load the desired image and call back the provided frame when done.
-     * @param JFrame the frame to repaint when the image is loaded
+     * @param callbackFrame the frame to repaint when the image is loaded
      */
     public void load(JFrame callbackFrame) {
         this.callbackFrame = callbackFrame;

@@ -19,7 +19,7 @@ import java.util.*;
  * ChemicalImpl class.
  */
 public class ChemicalFactory2 {
-    private static Map chemicals = new HashMap();
+    private static Map<String, Chemical> chemicals = new HashMap<>();
 
     class ChemicalImpl implements Chemical {
         private String name;
@@ -62,6 +62,6 @@ public class ChemicalFactory2 {
      * @return the Chemical object for the given name.
      */
     public static Chemical getChemical(String name) {
-        return (Chemical) chemicals.get(name.toLowerCase());
+        return chemicals.get(name.toLowerCase());
     }
 }

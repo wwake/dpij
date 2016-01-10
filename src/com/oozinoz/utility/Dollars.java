@@ -48,7 +48,7 @@ public class Dollars {
     }
 
     public String toString() {
-        StringBuffer result = new StringBuffer("$");
+        StringBuilder result = new StringBuilder("$");
 
         long dollars = cents / CENTS_PER_DOLLAR;
         result.append(dollars);

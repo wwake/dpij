@@ -17,19 +17,19 @@ import java.util.*;
  * This is the abstract superclass of enmerators that can walk across leaf nodes
  * and composite nodes in a composite structure.
  */
-public abstract class ComponentIterator implements Iterator {
-    protected Object head;
+public abstract class ComponentIterator<E> implements Iterator<E> {
+    protected E head;
 
-    protected Set visited;
+    protected Set<E> visited;
 
     protected boolean returnInterior = true;
 
     /**
      * Create an enumerator over a node in a composite.
-     * @param node the node to iterate over
+     * @param head the node to iterate over
      * @param visited a set to track visited nodes
      */
-    public ComponentIterator(Object head, Set visited) {
+    public ComponentIterator(E head, Set<E> visited) {
         this.head = head;
         this.visited = visited;
     }

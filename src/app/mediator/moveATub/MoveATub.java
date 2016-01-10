@@ -30,16 +30,16 @@ import com.oozinoz.ui.UI;
  * out of this class.
  */
 public class MoveATub extends JPanel implements ListSelectionListener, ActionListener {
-    private static Hashtable tubMachine;
+    private static Map<String, String> tubMachine;
 
-    private List boxes;
-    private JList boxList;
+    private List<String> boxes;
+    private JList<String> boxList;
 
-    private JList tubList;
-    private Object selectedTub;
+    private JList<String> tubList;
+    private String selectedTub;
 
-    private JList machineList;
-    private Object selectedMachine;
+    private JList<String> machineList;
+    private String selectedMachine;
 
     private JButton assignButton;
 
@@ -73,7 +73,7 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
         return result;
     }
 
-    private Component labeledPanel(String label, JList list) {
+    private Component labeledPanel(String label, JList<?> list) {
         JPanel result = new JPanel(new BorderLayout());
         result.add(new JLabel(label), BorderLayout.NORTH);
         result.add(new JScrollPane(list), BorderLayout.CENTER);
@@ -85,9 +85,9 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
     }
 
     // This is a temporary approach that has hard-coded literals
-    private List boxes() {
+    private List<String> boxes() {
         if (boxes == null) {
-            boxes = new ArrayList();
+            boxes = new ArrayList<>();
             boxes.add("Mixer-2201");
             boxes.add("Mixer-2202");
             boxes.add("Fuser-2101");
@@ -98,23 +98,23 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
         return boxes;
     }
 
-    private JList boxList() {
+    private JList<String> boxList() {
         if (boxList == null) {
-            boxList = ui.createList(boxes().toArray());
+            boxList = ui.createList(boxes().toArray(new String[0]));
             boxList.addListSelectionListener(this);
         }
         return boxList;
     }
 
-    private JList machineList() {
+    private JList<String> machineList() {
         if (machineList == null) {
-            machineList = ui.createList(boxes().toArray());
+            machineList = ui.createList(boxes().toArray(new String[0]));
             machineList.addListSelectionListener(this);
         }
         return machineList;
     }
 
-    private JList tubList() {
+    private JList<String> tubList() {
         if (tubList == null) {
             tubList = ui.createList(new String[] {});
             tubList.addListSelectionListener(this);
@@ -131,9 +131,9 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
         return assignButton;
     }
 
-    private static Hashtable tubMachine() {
+    private static Map<String, String> tubMachine() {
         if (tubMachine == null) {
-            tubMachine = new Hashtable();
+            tubMachine = new HashMap<>();
             tubMachine.put("T502", "Mixer-2201");
             tubMachine.put("T503", "Mixer-2201");
             tubMachine.put("T504", "Mixer-2201");
@@ -143,30 +143,30 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
         return tubMachine;
     }
 
-    private static List tubNames(String machineName) {
-        ArrayList result = new ArrayList();
+    private static List<String> tubNames(String machineName) {
+        List<String> result = new ArrayList<>();
 
-        Enumeration iter = tubMachine().keys();
-        while (iter.hasMoreElements()) {
-            String key = iter.nextElement().toString();
-            String value = tubMachine().get(key).toString();
-            if (value.equals(machineName)) result.add(key);
+        for (String key : tubMachine().keySet()) {
+            String value = tubMachine().get(key);
+            if (value.equals(machineName)) {
+                result.add(key);
+            }
         }
 
         return result;
     }
 
     private void updateTubList(String machineName) {
-        List tubs = tubNames(machineName);
-        tubList().setListData(tubs.toArray());
+        List<String> tubs = tubNames(machineName);
+        tubList().setListData(tubs.toArray(new String[0]));
     }
 
     public void valueChanged(ListSelectionEvent e) {
-        JList sender = (JList) e.getSource();
+        @SuppressWarnings("unchecked") JList<String> sender = (JList<String>) e.getSource();
 
         if (!sender.isSelectionEmpty()) {
             if (sender.equals(boxList())) 
-                updateTubList(sender.getSelectedValue().toString());
+                updateTubList(sender.getSelectedValue());
             
             if (sender.equals(machineList())) 
                 selectedMachine = sender.getSelectedValue();
@@ -181,10 +181,8 @@ public class MoveATub extends JPanel implements ListSelectionListener, ActionLis
 
     public void actionPerformed(ActionEvent e) {
         if (selectedMachine == null || selectedTub == null) return;
-        String tubName = selectedTub.toString();
-        String fromMachineName = (String) tubMachine().get(tubName);
-        String toMachineName = selectedMachine.toString();
-        tubMachine().put(tubName, toMachineName);
+        String fromMachineName = tubMachine().get(selectedTub);
+        tubMachine().put(selectedTub, selectedMachine);
         updateTubList(fromMachineName);
         assignButton().setEnabled(false);
     }

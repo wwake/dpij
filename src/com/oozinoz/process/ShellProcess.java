@@ -16,6 +16,7 @@ package com.oozinoz.process;
  * shell.
  */
 public class ShellProcess {
+
     protected static ProcessSequence make;
 
     /**

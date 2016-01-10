@@ -57,7 +57,7 @@ public class UnloadBuffer extends Machine {
      * 
      * @param id
      *            the identity of this unload buffer
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      */
     protected UnloadBuffer(int id, TubMediator mediator) {
@@ -70,7 +70,7 @@ public class UnloadBuffer extends Machine {
      * 
      * @param id
      *            the identity of this unload buffer
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      * @param parent
      *            the composite this machine belongs to

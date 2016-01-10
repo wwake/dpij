@@ -24,7 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
@@ -167,7 +167,7 @@ public class VisMediator {
         try {
             out = new FileInputStream(dialog.getSelectedFile());
             s = new ObjectInputStream(out);
-            ArrayList list = (ArrayList) s.readObject();
+            @SuppressWarnings("unchecked") List<Point> list = (List<Point>) s.readObject();
             factoryModel.setLocations(list);
         } finally {
             if (s != null)

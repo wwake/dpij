@@ -17,11 +17,11 @@ import java.util.*;
  * Show a "synchronized" list with iteration over the list.
  */
 public class ShowConcurrentMutex implements Runnable {
-    private List list;
+    private List<String> list;
 
-    protected static List upMachineNames() {
-        return new ArrayList(Arrays.asList(new String[] { "Mixer1201",
-                "ShellAssembler1301", "StarPress1401", "UnloadBuffer1501" }));
+    protected static List<String> upMachineNames() {
+        return new ArrayList<>(Arrays.asList("Mixer1201",
+                "ShellAssembler1301", "StarPress1401", "UnloadBuffer1501"));
     }
 
     public static void main(String[] args) {

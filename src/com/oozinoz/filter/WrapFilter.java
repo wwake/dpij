@@ -30,8 +30,8 @@ import java.util.*;
  */
 public class WrapFilter extends OozinozFilter {
     protected int lineLength;
-    protected StringBuffer lineBuf = new StringBuffer();
-    protected StringBuffer wordBuf = new StringBuffer();
+    protected StringBuilder lineBuf = new StringBuilder();
+    protected StringBuilder wordBuf = new StringBuilder();
     protected boolean center = false;
     protected boolean inWhite = false;
     protected boolean needBlank = false;
@@ -91,14 +91,14 @@ public class WrapFilter extends OozinozFilter {
             postLine();
             ((BufferedWriter) out).newLine();
             lineBuf = wordBuf;
-            wordBuf = new StringBuffer();
+            wordBuf = new StringBuilder();
         } else {
             if (needBlank) 
                 lineBuf.append(" ");
 
             lineBuf.append(wordBuf);
             needBlank = true;
-            wordBuf = new StringBuffer();
+            wordBuf = new StringBuilder();
         }
     }
 

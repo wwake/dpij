@@ -52,7 +52,7 @@ public class BallisticsPanel extends JPanel implements Observer {
     /**
      * Respond to a change in the observed Tpeak model
      * 
-     * @param Observable
+     * @param o
      *            presumably the model we are observing
      * @param arg
      *            ignored

@@ -35,7 +35,7 @@ public class Visualization extends JPanel implements ChangeListener {
 
 	protected JButton undoButton;
 
-	protected Icon image = UI.getIcon("images/machine.png");
+	protected Icon image = UI.getIcon("resources/images/machine.png");
 
 	protected FactoryModel factoryModel = new FactoryModel();
 
@@ -100,10 +100,9 @@ public class Visualization extends JPanel implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		machinePanel().removeAll();
 
-		List locations = factoryModel.getLocations();
+		List<Point> locations = factoryModel.getLocations();
 
-		for (int i = 0; i < locations.size(); i++) {
-			Point p = (Point) locations.get(i);
+		for (Point p : locations) {
 			machinePanel().add(createPictureBox(p));
 		}
 

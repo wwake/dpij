@@ -15,9 +15,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
@@ -66,7 +64,7 @@ public class SwingFacade {
     /**
      * Display the given component within a frame.
      * 
-     * @param component
+     * @param c
      *            the component to display
      * @param title
      *            the window title for the frame
@@ -74,7 +72,7 @@ public class SwingFacade {
      */
     public static JFrame launch(Component c, String title) {
         JFrame frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     
         frame.getContentPane().add(c);
 

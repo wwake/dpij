@@ -17,10 +17,10 @@ package com.oozinoz.controller2;
  * @author Steven J. Metsker
  */
 public interface MachineDriver {
-    public abstract void startMachine();
-    public abstract void stopMachine();
-    public abstract void startProcess();
-    public abstract void stopProcess();
-    public abstract void conveyIn();
-    public abstract void conveyOut();
+    void startMachine();
+    void stopMachine();
+    void startProcess();
+    void stopProcess();
+    void conveyIn();
+    void conveyOut();
 }

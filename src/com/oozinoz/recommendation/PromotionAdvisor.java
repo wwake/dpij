@@ -46,7 +46,7 @@ public class PromotionAdvisor implements Advisor {
     /**
      * Recommend a nice item for this customer, based what we're promoting.
      * 
-     * @param Customer
+     * @param c
      *            the customer to cross-sell
      * @return a nice item for the customer to buy
      */

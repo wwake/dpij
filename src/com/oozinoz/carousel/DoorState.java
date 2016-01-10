@@ -50,7 +50,7 @@ public abstract class DoorState {
     /**
      * Construct a state for the provided door.
      * 
-     * @param Door2 a door that needs a state model
+     * @param door a door that needs a state model
      */
     public DoorState(Door2 door) {
         this.door = door;

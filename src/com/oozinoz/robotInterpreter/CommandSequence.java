@@ -18,7 +18,7 @@ import java.util.List;
 *  This class contains a sequence of other commands.
 */
 public class CommandSequence extends Command {
-    protected List commands = new ArrayList();
+    protected List<Command> commands = new ArrayList<>();
 
     /**
     *  Add a command to the sequence of commands to which this
@@ -30,18 +30,17 @@ public class CommandSequence extends Command {
     }
 
     /**
-    *  @returns a string description of this command sequence.
+    *  @return a string description of this command sequence.
     */
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         boolean needLine = false;
 
-        for (int i = 0; i < commands.size(); i++) {
-            Command c = (Command) commands.get(i);
+        for (Command command : commands) {
             if (needLine)
                 sb.append("\n");
 
-            sb.append(c);
+            sb.append(command);
             needLine = true;
         }
 
@@ -52,9 +51,8 @@ public class CommandSequence extends Command {
     *  Ask each command in the sequence to execute.
     */
     public void execute() {
-        for (int i = 0; i < commands.size(); i++) {
-            Command c = (Command) commands.get(i);
-            c.execute();
+        for (Command command : commands) {
+            command.execute();
         }
     }
 }

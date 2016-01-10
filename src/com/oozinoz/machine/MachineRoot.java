@@ -19,7 +19,7 @@ public class MachineRoot extends MachineComposite {
     /**
      * Create a root component with the given responsible engineer.
      * @param id the identity of this component
-     * @param engineer the person with overall responsibility for the machines
+     * @param responsible the person with overall responsibility for the machines
      *            in this composite
      */
     public MachineRoot(int id, Engineer responsible) {

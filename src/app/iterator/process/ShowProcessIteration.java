@@ -18,7 +18,7 @@ import com.oozinoz.process.ShellProcess;
 public class ShowProcessIteration {
     public static void main(String[] args) {
         ProcessComponent pc = ShellProcess.make();
-        ComponentIterator iter = pc.iterator();
+        ComponentIterator<ProcessComponent> iter = pc.iterator();
         while (iter.hasNext())
             System.out.println(iter.next());
     }

@@ -42,8 +42,8 @@ public class RocketTableModel extends AbstractTableModel {
      * @param index which column is interesting
      * @return the name of the indicated column
      */
-    public String getColumnName(int i) {
-        return columnNames[i];
+    public String getColumnName(int index) {
+        return columnNames[index];
     }
 
     /**
@@ -65,7 +65,7 @@ public class RocketTableModel extends AbstractTableModel {
         case 1:
             return rockets[row].getPrice();
         case 2:
-            return new Double(rockets[row].getApogee());
+            return rockets[row].getApogee();
         default:
             return null;
         }

@@ -23,11 +23,11 @@ import com.oozinoz.ui.UI;
 public class MoveATub2 extends JPanel {
     private NameBase data = new NameBase();
 
-    private JList boxList;
+    private JList<String> boxList;
 
-    private JList tubList;
+    private JList<String> tubList;
 
-    private JList machineList;
+    private JList<String> machineList;
 
     private JButton assignButton;
 
@@ -64,7 +64,7 @@ public class MoveATub2 extends JPanel {
         return result;
     }
 
-    private Component labeledPanel(String label, JList list) {
+    private Component labeledPanel(String label, JList<?> list) {
         JPanel result = new JPanel(new BorderLayout());
         result.add(new JLabel(label), BorderLayout.NORTH);
         result.add(new JScrollPane(list), BorderLayout.CENTER);
@@ -76,7 +76,7 @@ public class MoveATub2 extends JPanel {
         return result;
     }
 
-    public JList boxList() {
+    public JList<String> boxList() {
         if (boxList == null) {
             boxList = ui.createList(data.boxes());
             boxList.addListSelectionListener(mediator);
@@ -84,7 +84,7 @@ public class MoveATub2 extends JPanel {
         return boxList;
     }
 
-    public JList machineList() {
+    public JList<String> machineList() {
         if (machineList == null) {
             machineList = ui.createList(data.boxes());
             machineList.addListSelectionListener(mediator);
@@ -92,7 +92,7 @@ public class MoveATub2 extends JPanel {
         return machineList;
     }
 
-    public JList tubList() {
+    public JList<String> tubList() {
         if (tubList == null) {
             tubList = ui.createList(new String[] {});
             tubList.addListSelectionListener(mediator);

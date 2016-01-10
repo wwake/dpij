@@ -19,7 +19,7 @@ public class ImpatientProxy implements InvocationHandler {
      */
     public static Object newInstance(Object obj) {
         ClassLoader loader = obj.getClass().getClassLoader();
-        Class[] classes = obj.getClass().getInterfaces();
+        Class<?>[] classes = obj.getClass().getInterfaces();
         return Proxy.newProxyInstance(loader, classes, new ImpatientProxy(obj));
     }
 

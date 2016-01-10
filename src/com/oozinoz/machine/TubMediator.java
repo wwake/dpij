@@ -19,19 +19,18 @@ import java.util.*;
  *  
  */
 public class TubMediator {
-    protected Map tubToMachine = new HashMap();
+    protected Map<Tub, Machine> tubToMachine = new HashMap<>();
 
     public Machine getMachine(Tub t) {
-        return (Machine) tubToMachine.get(t);
+        return tubToMachine.get(t);
     }
 
-    public Set getTubs(Machine m) {
-        Set set = new HashSet();
-        Iterator i = tubToMachine.entrySet().iterator();
-        while (i.hasNext()) {
-            Map.Entry e = (Map.Entry) i.next();
-            if (e.getValue().equals(m))
+    public Set<Tub> getTubs(Machine m) {
+        Set<Tub> set = new HashSet<>();
+        for (Map.Entry<Tub, Machine> e : tubToMachine.entrySet()) {
+            if (e.getValue().equals(m)) {
                 set.add(e.getKey());
+            }
         }
         return set;
     }

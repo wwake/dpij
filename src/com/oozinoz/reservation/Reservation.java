@@ -55,7 +55,7 @@ public class Reservation implements Serializable {
      * @return a textual description of this reservation.
      */
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("Date: ");
         sb.append(date.toString());
         sb.append(", Headcount: ");

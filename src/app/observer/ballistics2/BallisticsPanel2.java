@@ -47,7 +47,7 @@ public class BallisticsPanel2 extends JPanel implements ChangeListener {
      *            the ballistics function to plot. Ballistics functions vary
      *            with time and with the time of peak burn area.
      * 
-     * @param JSlider
+     * @param slider
      *            a slider to observe
      */
     public BallisticsPanel2(BallisticsFunction func, JSlider slider) {

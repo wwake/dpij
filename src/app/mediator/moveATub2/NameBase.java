@@ -11,20 +11,17 @@ package app.mediator.moveATub2;
  * restriction that you may not claim that you wrote it.
  */
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 public class NameBase {
-    private List boxes;
-    private Hashtable tubMachine;
+    private List<String> boxes;
+    private Map<String, String> tubMachine;
  
-    public Object[] boxes()
+    public String[] boxes()
     {
         if (boxes == null) 
         {
-            boxes = new ArrayList();
+            boxes = new ArrayList<>();
             boxes.add("Mixer-2201");
             boxes.add("Mixer-2202");  
             boxes.add("Fuser-2101");
@@ -32,14 +29,14 @@ public class NameBase {
             boxes.add("StarPress-2402");
             boxes.add("Assembler-2301");
         }
-        return boxes.toArray();
+        return boxes.toArray(new String[0]);
     }
     
-    private Hashtable tubMachine()
+    private Map<String, String> tubMachine()
     {
         if (tubMachine == null) 
         {
-            tubMachine = new Hashtable();
+            tubMachine = new HashMap<>();
             tubMachine.put("T502", "Mixer-2201");
             tubMachine.put("T503", "Mixer-2201");
             tubMachine.put("T504", "Mixer-2201");
@@ -49,23 +46,21 @@ public class NameBase {
         return tubMachine;
     } 
     
-    public Object[] tubNames(String machineName)
+    public String[] tubNames(String machineName)
     {
-        ArrayList result = new ArrayList();
-        
-        Enumeration iter = this.tubMachine().keys();
-        while (iter.hasMoreElements()) {
-            String key = iter.nextElement().toString();
+        List<String> result = new ArrayList<>();
+
+        for (String key : this.tubMachine().keySet()) {
             String value = getMachineContaining(key);
             if (value.equals(machineName))
                 result.add(key);
         }
         
-        return result.toArray();
+        return result.toArray(new String[0]);
     }
 
     public String getMachineContaining(String tubName) {
-        return (String) tubMachine().get(tubName);
+        return tubMachine().get(tubName);
     }
 
     public void put(String tubName, String toMachineName) {

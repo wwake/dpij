@@ -13,6 +13,7 @@ package com.oozinoz.process;
 
 import java.util.Set;
 
+import com.oozinoz.iterator.AcycliclyIterable;
 import com.oozinoz.iterator.ComponentIterator;
 import com.oozinoz.iterator.LeafIterator;
 
@@ -39,8 +40,8 @@ public class ProcessStep extends ProcessComponent {
         v.visit(this);
     }
 
-    public ComponentIterator iterator(Set visited) {
-        return new LeafIterator(this, visited);
+    public ComponentIterator<ProcessComponent> iterator(Set<ProcessComponent> visited) {
+        return new LeafIterator<>(this, visited);
     }
     
     /**
@@ -48,7 +49,7 @@ public class ProcessStep extends ProcessComponent {
      * @param visited
      *            components already visited while traversing this component
      */
-    public int getStepCount(Set visited) {
+    public int getStepCount(Set<String> visited) {
         visited.add(name);
         return 1;
     }

@@ -50,7 +50,7 @@ public class StarPress extends Machine {
      * 
      * @param id
      *            the identity of this star press
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      */
     protected StarPress(int id, TubMediator mediator) {
@@ -63,7 +63,7 @@ public class StarPress extends Machine {
      * 
      * @param id
      *            the identity of this star press
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      * @param parent
      *            the composite this machine belongs to

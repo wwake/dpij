@@ -20,7 +20,7 @@ import java.util.*;
 public class Factory {
     private static Factory factory;
 
-    private static Object classLock = Factory.class;
+    private static final Object classLock = Factory.class;
 
     private long wipMoves;
 
@@ -51,8 +51,8 @@ public class Factory {
      * @return an example list of "up" machines, supporting
      *         "ShowConcurrentWhile" and other examples).
      */
-    public static ArrayList upMachineNames() {
-        ArrayList result = new ArrayList();
+    public static List<String> upMachineNames() {
+        List<String> result = new ArrayList<>();
         result.add("Mixer:1201");
         result.add("ShellAssembler:1301");
         result.add("StarPress:1401");

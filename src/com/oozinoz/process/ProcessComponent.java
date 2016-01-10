@@ -14,6 +14,7 @@ package com.oozinoz.process;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.oozinoz.iterator.AcycliclyIterable;
 import com.oozinoz.iterator.ComponentIterator;
 
 /**
@@ -21,7 +22,7 @@ import com.oozinoz.iterator.ComponentIterator;
  * compositions of process steps. A process is essentially a recipe for
  * manufacturing something, notably fireworks.
  */
-public abstract class ProcessComponent {
+public abstract class ProcessComponent implements AcycliclyIterable<ProcessComponent> {
     protected String name;
 
     /**
@@ -49,17 +50,17 @@ public abstract class ProcessComponent {
         return name;
     }
 
-    public ComponentIterator iterator() {
-        return iterator(new HashSet());
+    public ComponentIterator<ProcessComponent> iterator() {
+        return iterator(new HashSet<ProcessComponent>());
     }
     
-    public abstract ComponentIterator iterator(Set visited);
+    public abstract ComponentIterator<ProcessComponent> iterator(Set<ProcessComponent> visited);
     
     /**
      * @return the number of leaf node steps in this composite.
      */
     public int getStepCount() {
-        return getStepCount(new HashSet());
+        return getStepCount(new HashSet<String>());
     }
 
     /**
@@ -67,7 +68,7 @@ public abstract class ProcessComponent {
      * @param visited
      *            components already visited while traversing this component
      */
-    public abstract int getStepCount(Set visited);
+    public abstract int getStepCount(Set<String> visited);
 
     /**
      * @return a textual representation of this component.

@@ -22,8 +22,8 @@ public class Firecracker extends Firework {
     /**
      * Make a firecracker. The English call these "bangers," which seems a bit
      * more straightforward.
-     * @param String the firecracker's name
-     * @param double the price
+     * @param name the firecracker's name
+     * @param price the price
      */
     public Firecracker(String name, Dollars price) {
         super(name, 0.04, price);

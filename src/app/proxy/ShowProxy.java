@@ -28,7 +28,7 @@ import com.oozinoz.imaging.*;
  * @see LoadingImageIcon
  */
 public class ShowProxy implements ActionListener {
-    private ImageIconProxy proxy = new ImageIconProxy("images/fest.jpg");
+    private ImageIconProxy proxy = new ImageIconProxy("resources/images/fest.jpg");
     private JFrame frame;
     private JButton loadButton;
 

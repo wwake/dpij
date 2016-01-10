@@ -18,12 +18,12 @@ import java.util.*;
  * with a "for" loop is thread safe.
  */
 public class ShowConcurrentFor implements Runnable {
-    private List list;
+    private List<String> list;
 
-    protected static List upMachineNames() {
-        return new ArrayList(Arrays.asList(new String[] { 
+    protected static List<String> upMachineNames() {
+        return new ArrayList<>(Arrays.asList(
             "Mixer1201", "ShellAssembler1301", 
-            "StarPress1401", "UnloadBuffer1501" }));
+            "StarPress1401", "UnloadBuffer1501"));
     }
 
     public static void main(String[] args) {

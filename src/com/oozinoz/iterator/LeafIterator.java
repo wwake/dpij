@@ -13,8 +13,8 @@ package com.oozinoz.iterator;
 
 import java.util.Set;
 
-public class LeafIterator extends ComponentIterator {
-    public LeafIterator(Object head, Set visited) {
+public class LeafIterator<E> extends ComponentIterator<E> {
+    public LeafIterator(E head, Set<E> visited) {
         super(head, visited);
     }
 
@@ -26,7 +26,7 @@ public class LeafIterator extends ComponentIterator {
         return !visited.contains(head);
     }
 
-    public Object next() {
+    public E next() {
         if (visited.contains(head)) return null;
 
         visited.add(head);

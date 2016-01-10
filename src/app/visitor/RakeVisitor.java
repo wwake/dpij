@@ -19,16 +19,16 @@ import java.util.*;
  * behavior that finds all the leaf-node machines in a composite.
  * 
  * @author Steven J. Metsker
- * @see com.oozinoz.applications.ShowRakeVisitor
+ * @see app.visitor.ShowRakeVisitor
  */
 public class RakeVisitor implements MachineVisitor {
-    private Set leaves;
+    private Set<MachineComponent> leaves;
 
     /**
      * Find all the leaf-node machines in a composite.
      */
-    public Set getLeaves(MachineComponent mc) {
-        leaves = new HashSet();
+    public Set<MachineComponent> getLeaves(MachineComponent mc) {
+        leaves = new HashSet<>();
         mc.accept(this);
         return leaves;
     }
@@ -45,8 +45,8 @@ public class RakeVisitor implements MachineVisitor {
      * nodes.
      */
     public void visit(MachineComposite mc) {
-        Iterator iter = mc.getComponents().iterator();
-        while (iter.hasNext()) 
-            ((MachineComponent) iter.next()).accept(this);
+        for (MachineComponent machineComponent : mc.getComponents()) {
+            machineComponent.accept(this);
+        }
     }
 }

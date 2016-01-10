@@ -52,7 +52,7 @@ public abstract class OozinozFilter extends FilterWriter {
     /**
      * Write a portion of a string.
      * 
-     * @param str
+     * @param s
      *            String to be written
      * @param offset
      *            Offset from which to start reading characters

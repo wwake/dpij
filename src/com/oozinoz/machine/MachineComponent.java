@@ -12,6 +12,8 @@ package com.oozinoz.machine;
  */
 
 import java.util.*;
+
+import com.oozinoz.iterator.AcycliclyIterable;
 import com.oozinoz.iterator.ComponentIterator;
 
 /**
@@ -21,7 +23,7 @@ import com.oozinoz.iterator.ComponentIterator;
  * @author Steven J. Metsker
  *  
  */
-public abstract class MachineComponent {
+public abstract class MachineComponent implements AcycliclyIterable<MachineComponent> {
     protected int id = 0;
     protected String name;
     protected MachineComponent parent;
@@ -68,24 +70,24 @@ public abstract class MachineComponent {
     /*
      * Subclasses implement this to support the isTree() algorithm.
      */
-    protected abstract boolean isTree(Set s);
+    protected abstract boolean isTree(Set<MachineComponent> s);
 
     /**
      * @return true if this component is atop an acyclic graph in which no node
      *         has two parents (two references to it).
      */
     public boolean isTree() {
-        return isTree(new HashSet());
+        return isTree(new HashSet<MachineComponent>());
     }
 
     /**
      * @return an iterator for this component
      */
-    public ComponentIterator iterator() {
-        return iterator(new HashSet());
+    public ComponentIterator<MachineComponent> iterator() {
+        return iterator(new HashSet<MachineComponent>());
     }
     
-    public abstract ComponentIterator iterator(Set set);
+    public abstract ComponentIterator<MachineComponent> iterator(Set<MachineComponent> set);
 
     /**
      * @return a textual representation of this component
@@ -153,7 +155,7 @@ public abstract class MachineComponent {
     }
 
     /**
-     * @param id the machine id to search for
+     * @param thatId the machine id to search for
      * @return a machine within this machine graph, given its ID.
      */
     public MachineComponent find(int thatId) {
@@ -163,7 +165,7 @@ public abstract class MachineComponent {
     }
 
     /**
-     * @param id the machine name to search for
+     * @param name the machine name to search for
      * @return a machine with the given name.
      */
     public MachineComponent find(String name) {

@@ -38,7 +38,7 @@ public class PhysicalRocket {
     /**
      * @return The remaining mass of the rocket after burning off a portion of
      *         its fuel.
-     * @param time time since ignition
+     * @param t time since ignition
      */
     public double getMass(double t) {
         if (t > totalBurnTime) return totalMass - initialFuelMass;

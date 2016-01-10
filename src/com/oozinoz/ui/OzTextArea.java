@@ -40,7 +40,7 @@ public class OzTextArea extends JPanel {
     /**
      * Add the supplied text to this text area.
      * 
-     * @param String
+     * @param text
      *            the text to append
      */
     public void append(String text) {

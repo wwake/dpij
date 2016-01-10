@@ -46,7 +46,7 @@ public class Mixer extends Machine {
      * 
      * @param id
      *            the identity of this mixer
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      */
     protected Mixer(int id, TubMediator mediator) {
@@ -59,7 +59,7 @@ public class Mixer extends Machine {
      * 
      * @param id
      *            the identity of this mixer
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      * @param parent
      *            the composite this machine belongs to

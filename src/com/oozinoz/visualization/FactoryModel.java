@@ -25,18 +25,18 @@ import javax.swing.event.ChangeListener;
  *  configuration changes.
  */ 
 public class FactoryModel {
-	private Stack mementos;
+	private Stack<List<Point>> mementos;
 
-	private ArrayList listeners = new ArrayList();
+	private List<ChangeListener> listeners = new ArrayList<>();
 
 	public FactoryModel() {
-		mementos = new Stack();
-		mementos.push(new ArrayList()); // start empty
+		mementos = new Stack<>();
+		mementos.push(new ArrayList<Point>()); // start empty
 	}
 
 	public void add(Point location) {
-        List oldLocs = (List) mementos.peek();
-		List newLocs = new ArrayList(oldLocs);
+        List<Point> oldLocs = mementos.peek();
+		List<Point> newLocs = new ArrayList<>(oldLocs);
 		newLocs.add(0, location);
 
 		mementos.push(newLocs);
@@ -44,8 +44,8 @@ public class FactoryModel {
 	}
 
 	public void drag(Point oldLocation, Point newLocation) {
-		List oldLocs = (List) mementos.peek();
-		List newLocs = new ArrayList(oldLocs);
+		List<Point> oldLocs = mementos.peek();
+		List<Point> newLocs = new ArrayList<>(oldLocs);
 		newLocs.remove(oldLocation);
 		newLocs.add(0, newLocation);
 
@@ -64,11 +64,11 @@ public class FactoryModel {
 		notifyListeners();
 	}
 
-	public List getLocations() {
-		return (List) mementos.peek();
+	public List<Point> getLocations() {
+		return mementos.peek();
 	}
 
-    public void setLocations(ArrayList list) {
+    public void setLocations(List<Point> list) {
         mementos.push(list);
         notifyListeners();
     }
@@ -78,7 +78,8 @@ public class FactoryModel {
 	}
 
 	public void notifyListeners() {
-		for (int i = 0; i < listeners.size(); i++)
-		    ((ChangeListener) listeners.get(i)).stateChanged(new ChangeEvent(this));
+		for (ChangeListener listener : listeners) {
+			listener.stateChanged(new ChangeEvent(this));
+		}
 	}
 }

@@ -36,7 +36,7 @@ public class BallisticsLabel extends JLabel implements Observer {
     /**
      * Respond to a change in the observed Tpeak model
      * 
-     * @param Observable
+     * @param obj
      *            presumably the model we are observing
      * @param arg
      *            ignored

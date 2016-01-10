@@ -26,13 +26,15 @@ public class ShowComparator {
         
         System.out.println("Sorted by apogee: ");
         Arrays.sort(rockets, new ApogeeComparator());
-        for (int i = 0; i < rockets.length; i++) 
-            System.out.println(rockets[i]);
+        for (Rocket rocket : rockets) {
+            System.out.println(rocket);
+        }
 
         System.out.println();
         System.out.println("Sorted by name: ");
         Arrays.sort(rockets, new NameComparator());
-        for (int i = 0; i < rockets.length; i++) 
-            System.out.println(rockets[i]); 
+        for (Rocket rocket : rockets) {
+            System.out.println(rocket);
+        }
     }
 }

@@ -13,14 +13,14 @@ package com.oozinoz.utility;
 
 import java.util.ArrayList;
 
-public class Queue {
-    private ArrayList queue;
+public class Queue<E> {
+    private ArrayList<E> queue;
     
     public Queue() {
-        queue = new ArrayList();
+        queue = new ArrayList<>();
     }
     
-    public void enqueue(Object obj) {
+    public void enqueue(E obj) {
         queue.add(obj);
     }
 
@@ -28,8 +28,8 @@ public class Queue {
         return queue.isEmpty();
     }
     
-    public Object dequeue() {
-        Object result = queue.get(0);
+    public E dequeue() {
+        E result = queue.get(0);
         queue.remove(0);
         return result;
     }

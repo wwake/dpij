@@ -16,8 +16,7 @@ import java.util.List;
 /**
 *  Represent a "sequence" (a series) of process steps.
 */
-public class ProcessSequence extends ProcessComposite 
-{
+public class ProcessSequence extends ProcessComposite {
     /**
     *  Create a sequence with the given name.
     * @param name the name of this process sequence
@@ -41,7 +40,7 @@ public class ProcessSequence extends ProcessComposite
     *  @param name the name of this sequence
     *  @param subprocesses the children of this sequence
     */
-    public ProcessSequence(String name, List subprocesses) 
+    public ProcessSequence(String name, List<ProcessComponent> subprocesses)
     {
         super(name, subprocesses);
     }

@@ -8,7 +8,7 @@ public class BadApple {
 
     /**
      * Create a "bad apple" with the given name.
-     * @param name
+     * @param name the name of the BadApple
      */
     public BadApple(String name) {
         this.name = name;

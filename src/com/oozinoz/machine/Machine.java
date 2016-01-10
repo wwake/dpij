@@ -13,6 +13,7 @@ package com.oozinoz.machine;
 
 import java.util.*;
 
+import com.oozinoz.iterator.AcycliclyIterable;
 import com.oozinoz.planning.BasicPlanner;
 import com.oozinoz.planning.MachinePlanner;
 import com.oozinoz.iterator.ComponentIterator;
@@ -27,7 +28,7 @@ import com.oozinoz.utility.Queue;
  */
 public abstract class Machine extends MachineComponent {
 
-    protected Queue bins = new Queue();
+    protected Queue<Bin> bins = new Queue<>();
 
     protected MachinePlanner planner;
 
@@ -41,7 +42,7 @@ public abstract class Machine extends MachineComponent {
      * 
      * @param id
      *            the identity of this machine
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      */
     protected Machine(int id, TubMediator mediator) {
@@ -54,7 +55,7 @@ public abstract class Machine extends MachineComponent {
      * 
      * @param id
      *            the identity of this machine
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      * @param parent
      *            the composite this machine belongs to
@@ -69,10 +70,12 @@ public abstract class Machine extends MachineComponent {
      * 
      * @param id
      *            the identity of this machine
-     * @param Mediator
+     * @param mediator
      *            the mediator that controls this machine's relation to bins
      * @param parent
      *            the composite this machine belongs to
+     * @param responsible
+     *            the person with overall responsibility for the machine
      */
     public Machine(int id, TubMediator mediator, MachineComponent parent, Engineer responsible) {
         super(id, parent, responsible);
@@ -106,13 +109,13 @@ public abstract class Machine extends MachineComponent {
     }
 
     public void initialize() {
-        bins = new Queue();
+        bins = new Queue<>();
     }
 
     /**
      * Queue up a bin for processing at this machine.
      * 
-     * @param Bin
+     * @param b
      *            the bin to add
      */
     public void load(Bin b) {
@@ -171,7 +174,7 @@ public abstract class Machine extends MachineComponent {
             System.out.println(toString() + " already empty");
             return null;
         }
-        Bin b = (Bin) bins.dequeue();
+        Bin b = bins.dequeue();
         System.out.println(toString() + " unloading");
         return b;
     }
@@ -181,7 +184,7 @@ public abstract class Machine extends MachineComponent {
      * here is to call back the visitor indicating the type of this node, namely
      * Machine.
      * 
-     * @param visitor
+     * @param v
      *            a visitor that will add some sort of behavior
      */
     public void accept(MachineVisitor v) {
@@ -191,7 +194,7 @@ public abstract class Machine extends MachineComponent {
     /**
      * Place a tub of chemicals at this machine.
      * 
-     * @param Tub
+     * @param t
      *            the tub to add
      */
     public void addTub(Tub t) {
@@ -214,7 +217,7 @@ public abstract class Machine extends MachineComponent {
      * 
      * @return the chemical tubs that are at this machine
      */
-    public Set getTubs() {
+    public Set<Tub> getTubs() {
         return mediator.getTubs(this);
     }
 
@@ -223,7 +226,7 @@ public abstract class Machine extends MachineComponent {
      * @return True; individual machines are always "trees"
      * @see MachineComponent#isTree()
      */
-    protected boolean isTree(Set visited) {
+    protected boolean isTree(Set<MachineComponent> visited) {
         visited.add(this);
         return true;
     }
@@ -239,8 +242,8 @@ public abstract class Machine extends MachineComponent {
      * @return an iterator that will "iterate over" this machine, returning it
      *         once.
      */
-    public ComponentIterator iterator(Set visited) {
-        return new LeafIterator(this, visited);
+    public ComponentIterator<MachineComponent> iterator(Set<MachineComponent> visited) {
+        return new LeafIterator<>(this, visited);
     }
 
     /**

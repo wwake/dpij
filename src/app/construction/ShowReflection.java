@@ -17,16 +17,16 @@ import java.lang.reflect.Constructor;
 public class ShowReflection {
 
     public static void main(String args[]) {
-        Constructor[] cc = Point.class.getConstructors();
+        Constructor<?>[] cc = Point.class.getConstructors();
 
-        Constructor cons = null;
-        for (int i = 0; i < cc.length; i++)
-            if (cc[i].getParameterTypes().length == 2)
-                cons = cc[i];
+        Constructor<?> cons = null;
+        for (Constructor<?> aCc : cc)
+            if (aCc.getParameterTypes().length == 2) {
+                cons = aCc;
+            }
 
         try {
-            Object obj = cons.newInstance(
-                    new Object[] { new Integer(3), new Integer(4) });
+            Object obj = cons.newInstance(3, 4);
 
             System.out.println(obj);
 

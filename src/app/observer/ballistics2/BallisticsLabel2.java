@@ -40,7 +40,7 @@ public class BallisticsLabel2 extends JLabel implements ChangeListener {
     /**
      * Construct a label that will show the value of a slider.
      * 
-     * @param JSlider
+     * @param slider
      *            the slider to observe
      */
     public BallisticsLabel2(JSlider slider) {

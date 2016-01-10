@@ -59,7 +59,7 @@ public class UI {
 	 */
 	public JButton createButtonOk() {
 		JButton button = createButton();
-		button.setIcon(getIcon("images/rocket-large.gif"));
+		button.setIcon(getIcon("resources/images/rocket-large.gif"));
 		button.setText("Ok!");
 		return button;
 	}
@@ -69,7 +69,7 @@ public class UI {
 	 */
 	public JButton createButtonCancel() {
 		JButton button = createButton();
-		button.setIcon(getIcon("images/rocket-large-down.gif"));
+		button.setIcon(getIcon("resources/images/rocket-large-down.gif"));
 		button.setText("Cancel!");
 		return button;
 	}
@@ -100,8 +100,8 @@ public class UI {
         return new ImageIcon(imageName);
     }
 
-    public JList createList(Object[] contents) {
-        JList result = new JList(contents);
+    public JList<String> createList(String[] contents) {
+        JList<String> result = new JList<>(contents);
         result.setFont(getFont()); 
         result.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         return result;

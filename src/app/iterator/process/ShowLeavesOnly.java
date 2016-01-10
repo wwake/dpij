@@ -18,7 +18,7 @@ import com.oozinoz.process.ShellProcess;
 public class ShowLeavesOnly {
     public static void main(String[] args) {
         ProcessComponent pc = ShellProcess.make();
-        ComponentIterator iter = pc.iterator();
+        ComponentIterator<ProcessComponent> iter = pc.iterator();
         iter.setShowInterior(false);
         
         while (iter.hasNext()) 

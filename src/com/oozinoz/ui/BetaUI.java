@@ -14,8 +14,6 @@ package com.oozinoz.ui;
 import java.awt.Font;
 import javax.swing.JButton;
 
-import com.oozinoz.ui.UI;
-
 /**
  * Shows an Abstract Factory where a GUI kit can introduce a small change to
  * look-and-feel.
@@ -28,13 +26,13 @@ public class BetaUI extends UI {
 
     public JButton createButtonOk() {
         JButton b = super.createButtonOk();
-        b.setIcon(getIcon("images/cherry-large.gif"));
+        b.setIcon(getIcon("resources/images/cherry-large.gif"));
         return b;
     }
 
     public JButton createButtonCancel() {
         JButton b = super.createButtonCancel();
-        b.setIcon(getIcon("images/cherry-large-down.gif"));
+        b.setIcon(getIcon("resources/images/cherry-large-down.gif"));
         return b;
     }
 }

@@ -22,8 +22,8 @@ public class MoveATubMediator implements ListSelectionListener, ActionListener {
     MoveATub2 gui;
     NameBase data;
     
-    private Object selectedMachine;
-    private Object selectedTub;
+    private String selectedMachine;
+    private String selectedTub;
     
     public MoveATubMediator(MoveATub2 gui, NameBase data) {
         this.gui = gui;
@@ -32,22 +32,21 @@ public class MoveATubMediator implements ListSelectionListener, ActionListener {
     
     public void actionPerformed(ActionEvent e) {
         if (selectedMachine == null || selectedTub == null) return;
-            String tubName = selectedTub.toString();
-            String fromMachineName = data.getMachineContaining(tubName);
-            String toMachineName = selectedMachine.toString();
-            data.put(tubName, toMachineName);
-            updateTubList(fromMachineName);
-            gui.assignButton().setEnabled(false);
+        String fromMachineName = data.getMachineContaining(selectedTub);
+        data.put(selectedTub, selectedMachine);
+        updateTubList(fromMachineName);
+        gui.assignButton().setEnabled(false);
     }
-    
+
+
     public void valueChanged(ListSelectionEvent e) {
-        JList sender = (JList) e.getSource();
+        @SuppressWarnings("unchecked") JList<String> sender = (JList<String>) e.getSource();
 
         if (! sender.isSelectionEmpty()) {
-            Object selection = sender.getSelectedValue();
+            String selection = sender.getSelectedValue();
             
             if (sender.equals(gui.boxList())) 
-                this.updateTubList(selection.toString());
+                this.updateTubList(selection);
             else if (sender.equals(gui.machineList())) 
                 selectedMachine = selection;
             else if (sender.equals(gui.tubList()))

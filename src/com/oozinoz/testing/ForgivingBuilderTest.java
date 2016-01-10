@@ -13,6 +13,8 @@ package com.oozinoz.testing;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import junit.framework.TestCase;
 
@@ -28,13 +30,19 @@ import com.oozinoz.utility.Dollars;
 */
 
 public class ForgivingBuilderTest extends TestCase {
+    Locale savedLocale;
     Date nextNov5;
     
     public void setUp() {
         // Pick a date definitely in the past: 11-5-2000
-        nextNov5 = ReservationBuilder.futurize(new Date(2000 - 1900, 11 - 1, 5));
+        nextNov5 = ReservationBuilder.futurize(new GregorianCalendar(2000, 11 - 1, 5).getTime());
+        savedLocale = Locale.getDefault();
+        Locale.setDefault(Locale.ENGLISH);
     }
-    
+
+    public void tearDown() {
+        Locale.setDefault(savedLocale);
+    }
     /**
     *  Test that we disallow a too low figure for dollars/head.
     */

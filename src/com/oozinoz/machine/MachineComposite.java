@@ -13,6 +13,7 @@ package com.oozinoz.machine;
 
 import java.util.*;
 
+import com.oozinoz.iterator.AcycliclyIterable;
 import com.oozinoz.iterator.ComponentIterator;
 import com.oozinoz.iterator.CompositeIterator;
 
@@ -21,7 +22,8 @@ import com.oozinoz.iterator.CompositeIterator;
  * factory.
  */
 public class MachineComposite extends MachineComponent {
-    protected List components = new ArrayList();
+
+    protected List<MachineComponent> components = new ArrayList<>();
 
     /**
      * Create a composite with the given id.
@@ -63,8 +65,8 @@ public class MachineComposite extends MachineComponent {
     public MachineComposite(int id, MachineComponent parent,
             MachineComponent[] components) {
         super(id, parent);
-        for (int i = 0; i < components.length; i++) {
-            add(components[i]);
+        for (MachineComponent component : components) {
+            add(component);
         }
     }
 
@@ -74,10 +76,8 @@ public class MachineComposite extends MachineComponent {
      */
     public int getMachineCount() {
         int count = 0;
-        Iterator i = components.iterator();
-        while (i.hasNext()) {
-            MachineComponent mc = (MachineComponent) i.next();
-            count += mc.getMachineCount();
+        for (MachineComponent component : components) {
+            count += component.getMachineCount();
         }
         return count;
     }
@@ -93,9 +93,7 @@ public class MachineComposite extends MachineComponent {
      * @param children the components to add to this composite
      */
     public void add(MachineComponent[] children) {
-        for (int i = 0; i < children.length; i++) {
-            components.add(children[i]);
-        }
+        Collections.addAll(components, children);
     }
 
     /**
@@ -103,7 +101,7 @@ public class MachineComposite extends MachineComponent {
      * here is to call back the visitor indicating the type of this node, namely
      * MachineComposite.
      * 
-     * @param visitor
+     * @param v
      *            a visitor that will add some sort of behavior
      */
     public void accept(MachineVisitor v) {
@@ -113,7 +111,7 @@ public class MachineComposite extends MachineComponent {
     /**
      * @return this composite's children
      */
-    public List getComponents() {
+    public List<MachineComponent> getComponents() {
         return components;
     }
 
@@ -122,12 +120,10 @@ public class MachineComposite extends MachineComponent {
      * @return true if this composite is a tree
      * @see MachineComponent#isTree()
      */
-    protected boolean isTree(Set visited) {
+    protected boolean isTree(Set<MachineComponent> visited) {
         visited.add(this);
-        Iterator i = components.iterator();
-        while (i.hasNext()) {
-            MachineComponent c = (MachineComponent) i.next();
-            if (visited.contains(c) || !c.isTree(visited)) 
+        for (MachineComponent mc : components) {
+            if (visited.contains(mc) || !mc.isTree(visited))
                 return false;
         }
         return true;
@@ -136,20 +132,20 @@ public class MachineComposite extends MachineComponent {
     /**
      * @return a component in this machine graph whose id matches the provided
      *         one.
-     * @param id
+     * @param thatId
      *            an id to search for
      */
     public MachineComponent find(int thatId) {
         if (id == thatId)
             return this;
 
-        List components = getComponents();
+        List<MachineComponent> components = getComponents();
 
-        for (int i = 0; i < components.size(); i++) {
-            MachineComponent child = (MachineComponent) components.get(i);
+        for (MachineComponent child : components) {
             MachineComponent mc = child.find(thatId);
-            if (mc != null)
+            if (mc != null) {
                 return mc;
+            }
         }
         return null;
     }
@@ -157,18 +153,18 @@ public class MachineComposite extends MachineComponent {
     /**
      * @return a component in this machine graph whose name matches the provided
      *         one.
-     * @param id a name to search for
+     * @param name a name to search for
      */
     public MachineComponent find(String name) {
         if (name.equals(this.toString()))
             return this;
 
-        List components = getComponents();
-        for (int i = 0; i < components.size(); i++) {
-            MachineComponent child = (MachineComponent) components.get(i);
+        List<MachineComponent> components = getComponents();
+        for (MachineComponent child : components) {
             MachineComponent mc = child.find(name);
-            if (mc != null)
+            if (mc != null) {
                 return mc;
+            }
         }
         return null;
     }
@@ -176,7 +172,7 @@ public class MachineComposite extends MachineComponent {
     /**
      * @return an iterator for this composite.
      */
-    public ComponentIterator iterator(Set visited) {
-        return new CompositeIterator(this, components, visited);
+    public ComponentIterator<MachineComponent> iterator(Set<MachineComponent> visited) {
+        return new CompositeIterator<>(this, components, visited);
     }
 }

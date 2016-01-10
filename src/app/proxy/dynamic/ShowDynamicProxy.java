@@ -13,9 +13,10 @@ import com.oozinoz.utility.Dollars;
  * takes too long to execute.
  */
 public class ShowDynamicProxy {
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
-        Set s = new HashSet();
-        s = (Set) ImpatientProxy.newInstance(s);
+        Set<Object> s = new HashSet<>();
+        s = (Set<Object>) ImpatientProxy.newInstance(s);
         s.add(new Sparkler("Mr. Twinkle", new Dollars(0.05)));
         s.add(new BadApple("Lemon"));
         s.add(new Firecracker("Mr. Boomy", new Dollars(0.25)));

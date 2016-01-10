@@ -62,5 +62,5 @@ public class ShowLoader implements ActionListener {
         return p;
     }
 
-    private LoadingImageIcon loader = new LoadingImageIcon("images/fest.jpg");
+    private LoadingImageIcon loader = new LoadingImageIcon("resources/images/fest.jpg");
 }

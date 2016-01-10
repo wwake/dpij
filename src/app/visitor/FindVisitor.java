@@ -19,7 +19,7 @@ import java.util.*;
  * behavior that finds a particular machine within a machine composite.
  * 
  * @author Steven J. Metsker
- * @see com.oozinoz.applications.ShowFindVisitor
+ * @see app.visitor.ShowFindVisitor
  */
 public class FindVisitor implements MachineVisitor {
     private int soughtId;
@@ -27,7 +27,7 @@ public class FindVisitor implements MachineVisitor {
     private MachineComponent found;
 
     /**
-     * @param MachineComponent the composite to look within
+     * @param mc the composite to look within
      * @param id the id of the machine to find
      * @return a machine with the given id, within the given machine composite
      */
@@ -55,8 +55,8 @@ public class FindVisitor implements MachineVisitor {
             found = mc;
             return;
         }
-        Iterator iter = mc.getComponents().iterator();
+        Iterator<MachineComponent> iter = mc.getComponents().iterator();
         while (found == null && iter.hasNext()) 
-            ((MachineComponent) iter.next()).accept(this);
+            iter.next().accept(this);
     }
 }

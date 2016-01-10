@@ -31,7 +31,7 @@ public class ForCommand extends Command {
      * Construct a "for" interpreter that will execute the provided body,
      * looping through the machines in a context, assigning the provided
      * variable to each machine.
-     * @param root The machine component over which to iterate
+     * @param mc The machine component over which to iterate
      * @param v the variable to set for each loop
      * @param body the body of the for command
      */
@@ -58,9 +58,8 @@ public class ForCommand extends Command {
         }
 
         MachineComposite comp = (MachineComposite) mc;
-        List children = comp.getComponents();
-        for (int i = 0; i < children.size(); i++) {
-            MachineComponent child = (MachineComponent) children.get(i);
+        List<MachineComponent> children = comp.getComponents();
+        for (MachineComponent child : children) {
             execute(child);
         }
     }
