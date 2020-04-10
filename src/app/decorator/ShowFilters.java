@@ -21,7 +21,7 @@ import com.oozinoz.filter.WrapFilter;
  * the command line.
  */
 public class ShowFilters {
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(args[0]));
         Writer out = new FileWriter(args[1]);
         out = new WrapFilter(new BufferedWriter(out), 40);

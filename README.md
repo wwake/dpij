@@ -3,6 +3,10 @@ Source code for *[Design Patterns in Java][1]* by Steve Metsker and Bill Wake
 
 [1]: http://www.amazon.com/exec/obidos/ASIN/0321333020/xp123com "Design Patterns in Java"
 
+2020-04-10
+I've [Bill Wake] updated the code to work with JDK 1.8 and JUnit 4.13. This eliminated the need for references to TestCase, and let tests use assertThrows().
+
+2016-01-10
 The original code from the book is in OozinozDpij-original.zip; the current code is updated to use generics etc. 
 
 Thanks to Juan Manuel Gimeno for making those changes:

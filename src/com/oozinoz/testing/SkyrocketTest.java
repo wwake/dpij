@@ -11,7 +11,8 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.oozinoz.firework.OozinozSkyrocket;
 import com.oozinoz.firework.PhysicalRocket;
@@ -20,8 +21,7 @@ import com.oozinoz.firework.PhysicalRocket;
 *  Test the Simulation package and the Fireworks classes that support it.
 */
 
-public class SkyrocketTest extends TestCase
-{
+public class SkyrocketTest {
     private static double SPECIFIC_IMPULSE = 620; // Newtons/Kg
     private static double FUEL_DENSITY = 1800; // Kg/M**3
 
@@ -29,7 +29,8 @@ public class SkyrocketTest extends TestCase
     *  Test that mass varies linearly from start mass to 0, over the
     *  time it takes the fuel to burn.
     */
-    public void testPhysicalRocket() 
+    @Test
+    public void physicalRocket()
     {
         double burnArea = .0030;
         double burnDepth = .06;
@@ -54,7 +55,8 @@ public class SkyrocketTest extends TestCase
     *  Test that mass varies linearly from start mass to 0, over the
     *  time it takes the fuel to burn.
     */
-    public void testOozinozSkyocket() 
+    @Test
+    public void oozinozSkyocket()
     {
         double burnArea = .0030;
         double burnDepth = .06;

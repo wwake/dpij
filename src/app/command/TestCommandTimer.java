@@ -14,9 +14,11 @@ package app.command;
 import com.oozinoz.robotInterpreter.Command;
 import com.oozinoz.utility.CommandTimer;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
-public class TestCommandTimer extends TestCase {
+public class TestCommandTimer {
+    @Test
     public void testSleep() {
         Command doze = new Command() {
             public void execute() {

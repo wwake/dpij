@@ -17,7 +17,7 @@ import com.oozinoz.utility.Dollars;
 
 public class ShowComparator {
     
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Rocket r1 = new Rocket("Sock-it", 0.8, new Dollars(11.95), 320, 25);
         Rocket r2 = new Rocket("Sprocket", 1.5, new Dollars(22.95), 270, 40);
         Rocket r3 = new Rocket("Mach-it", 1.1, new Dollars(22.95), 1000, 70);

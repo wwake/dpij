@@ -11,31 +11,36 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
-
 import com.oozinoz.utility.Dollars;
 
-public class DollarsTest extends TestCase {
-    public void testZero() {
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class DollarsTest {
+    @Test
+    public void zero() {
         Dollars d = new Dollars(0);
         assertTrue(d.isZero());
     }
 
-    public void testCents() {
+    @Test
+    public void cents() {
         Dollars d = new Dollars(0.17);
         assertFalse(d.isZero());
         assertEquals(17, d.asCents());
         assertEquals("$0.17", d.toString());
     }
 
-    public void testDouble() {
+    @Test
+    public void doubleTest() {
         Dollars d = new Dollars(0.10);
         assertFalse(d.isZero());
         assertEquals(10, d.asCents());
         assertEquals("$0.10", d.toString());
     }
 
-    public void testEquals() {
+    @Test
+    public void equalsTest() {
         Dollars d1 = new Dollars(3.17);
         Dollars d2 = new Dollars(3.17);
         Dollars d3 = new Dollars(3.16);
@@ -48,28 +53,32 @@ public class DollarsTest extends TestCase {
         assertFalse(d3.equals(d2));
         assertFalse(d1.equals(new Object()));        
     }
-    
-    public void testPlus() {
+
+    @Test
+    public void plus() {
         Dollars d1 = new Dollars(1.27);
         Dollars d2 = new Dollars(2.35);
         assertEquals(new Dollars(3.62), d1.plus(d2));
     }
-    
-    public void testTimes() {
+
+    @Test
+    public void times() {
         Dollars d1 = new Dollars(1.95);
         assertEquals(195, d1.asCents());
         Dollars d2 = d1.times(100);
         assertEquals(new Dollars(195.00), d2);
     }
-    
-    public void testDividedByDollars() {
+
+    @Test
+    public void dividedByDollars() {
         Dollars d1 = new Dollars(11.00);
         Dollars d2 = new Dollars(5);
         assertEquals(2.2, d1.dividedBy(d2), 0.001);
         assertEquals(0.4545, d2.dividedBy(d1), 0.001);
     }
-    
-    public void testDividedByInt() {
+
+    @Test
+    public void dividedByInt() {
         Dollars d1 = new Dollars(1.00);
         assertEquals(new Dollars(0.33), d1.dividedBy(3));
     }

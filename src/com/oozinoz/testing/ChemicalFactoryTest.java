@@ -11,16 +11,20 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
 import com.oozinoz.chemical.ChemicalFactory;
 import com.oozinoz.chemical2.ChemicalFactory2;
 
-public class ChemicalFactoryTest extends TestCase {
-    public void testGetFactory() {
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+public class ChemicalFactoryTest {
+    @Test
+    public void getFactory() {
         assertEquals("Carbon(C)[12.0]", ChemicalFactory.getChemical("CARBON").toString());
     }
-    
-    public void testChemicalFactory2() {
+
+    @Test
+    public void chemicalFactory2() {
         assertEquals("Carbon(C)[12.0]", ChemicalFactory2.getChemical("CARBON").toString());
     }
 }

@@ -11,7 +11,8 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.oozinoz.machine.Fuser;
 import com.oozinoz.machine.Machine;
@@ -23,7 +24,7 @@ import com.oozinoz.machine.OozinozFactory;
 *  Test the MachineComponent hierarchy, especially its ability
 *  to tell whether or not an object model is cyclic.
 */
-public class MachineTest extends TestCase {
+public class MachineTest {
     /**
     *  @return a normal little tree with 3 leaves.
     */
@@ -68,18 +69,21 @@ public class MachineTest extends TestCase {
         return m1;
     }
 
-    public void testCanCountLeaves() {
+    @Test
+    public void canCountLeaves() {
         assertEquals(3, tree().getMachineCount());
     }
 
-    public void testThatCycleIsNotATree() {
+    @Test
+    public void cycleIsNotATree() {
         assertFalse(cycle().isTree());
         assertFalse(nonTree().isTree());
         assertTrue(tree().isTree());
         assertFalse(OozinozFactory.plant().isTree());
     }
 
-    public void testThatAMachineIsATree() {
+    @Test
+    public void machineIsATree() {
         assertTrue(new Fuser(1).isTree());
     }
 }

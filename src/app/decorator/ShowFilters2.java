@@ -23,7 +23,7 @@ import com.oozinoz.filter.WrapFilter;
  * @author Steven J. Metsker
  */
 public class ShowFilters2 {
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         BufferedReader in = new BufferedReader(new FileReader(args[0]));
         Writer out = new PrintWriter(System.out);

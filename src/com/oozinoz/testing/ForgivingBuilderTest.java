@@ -16,7 +16,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.oozinoz.reservation.BuilderException;
 import com.oozinoz.reservation.ForgivingBuilder;
@@ -29,10 +33,11 @@ import com.oozinoz.utility.Dollars;
 *  Test that a forgiving builder builds correctly.
 */
 
-public class ForgivingBuilderTest extends TestCase {
-    Locale savedLocale;
-    Date nextNov5;
-    
+public class ForgivingBuilderTest {
+    private Locale savedLocale;
+    private Date nextNov5;
+
+    @Before
     public void setUp() {
         // Pick a date definitely in the past: 11-5-2000
         nextNov5 = ReservationBuilder.futurize(new GregorianCalendar(2000, 11 - 1, 5).getTime());
@@ -40,73 +45,64 @@ public class ForgivingBuilderTest extends TestCase {
         Locale.setDefault(Locale.ENGLISH);
     }
 
+    @After
     public void tearDown() {
         Locale.setDefault(savedLocale);
     }
+
     /**
     *  Test that we disallow a too low figure for dollars/head.
     */
-    public void testLowDollars() throws ParseException {
+    @Test
+    public void lowDollars() throws ParseException {
         String s = "Date, November 5, Headcount, 250, "
                 + "City, Springfield, DollarsPerHead, 1.95, "
                 + "HasSite, false";
         ReservationBuilder b = new ForgivingBuilder();
         new ReservationParser(b).parse(s);
 
-        try {
-            Reservation r = b.build();// should throw an exception
-            fail("Should throw a BuilderException");
-        } catch (BuilderException expected) {
-        }
+        assertThrows(BuilderException.class, b::build);
     }
 
     /**
     *  Test that we disallow a too low figure for headcount.
     */
-    public void testLowHeadCount() throws ParseException {
+    @Test
+    public void lowHeadCount() throws ParseException {
         String s = "Date, November 5, Headcount, 2, "
                 + "City, Springfield, DollarsPerHead, 9.95, "
                 + "HasSite, false";
         ReservationBuilder b = new ForgivingBuilder();
         new ReservationParser(b).parse(s);
 
-        try {
-            Reservation r = b.build();// should throw an exception
-            fail("Should throw a BuilderException");
-        } catch (BuilderException expected) {
-        }
+        assertThrows(BuilderException.class, b::build);
     }
 
     /**
     *  Test that we disallow a missing city.
     */
-    public void testNoCity() throws ParseException {
+    @Test
+    public void noCity() throws ParseException {
         String s = "Date, November 5, Headcount, 250, "
                 + "DollarsPerHead, 9.95, " + "HasSite, false";
         ReservationBuilder b = new ForgivingBuilder();
         new ReservationParser(b).parse(s);
 
-        try {
-            Reservation r = b.build();// should throw an exception
-            fail("Should throw a BuilderException");
-        } catch (BuilderException expected) {
-        }
+        assertThrows(BuilderException.class, b::build);
     }
 
     /**
     *  Test that we disallow a missing date.
     */
-    public void testNoDate() throws ParseException {
+    @Test
+    public void noDate() throws ParseException {
         String s = "Headcount, 250, "
                 + "City, Springfield, DollarsPerHead, 9.95, "
                 + "HasSite, false";
         ReservationBuilder b = new ForgivingBuilder();
         new ReservationParser(b).parse(s);
-        try {
-            Reservation r = b.build();// should throw an exception
-            fail("Should throw a BuilderException");
-        } catch (BuilderException expected) {
-        }
+
+        assertThrows(BuilderException.class, b::build);
     }
 
     /**
@@ -114,7 +110,8 @@ public class ForgivingBuilderTest extends TestCase {
     *  set the dollars/head value to be high enough to generate
     *  the minimum take.
     */
-    public void testNoDollar() throws BuilderException, ParseException {
+    @Test
+    public void noDollar() throws BuilderException, ParseException {
         String s = "Date, November 5, Headcount, 250, City, Springfield, "
                 + "  HasSite, false";
         ForgivingBuilder b = new ForgivingBuilder();
@@ -137,7 +134,8 @@ public class ForgivingBuilderTest extends TestCase {
     *  set the headcount to be at least the minimum attendance and at least
     *  enough to generate enough money for the event.
     */
-    public void testNoHeadcount() throws BuilderException, ParseException {
+    @Test
+    public void noHeadcount() throws BuilderException, ParseException {
         String s = "Date, November 5,   City, Springfield, "
                 + "DollarsPerHead, 9.95, HasSite, false";
         ForgivingBuilder b = new ForgivingBuilder();
@@ -161,7 +159,8 @@ public class ForgivingBuilderTest extends TestCase {
     *  dollars/head, set the headcount to the minimum and set dollars/head
     *  to the minimum total divided by the headcount.
     */
-    public void testNoHeadcountNoDollar() throws BuilderException, ParseException {
+    @Test
+    public void noHeadcountNoDollar() throws BuilderException, ParseException {
         String s = "Date, November 5,   City, Springfield, "
                 + "  HasSite, false";
         ForgivingBuilder b = new ForgivingBuilder();
@@ -182,7 +181,8 @@ public class ForgivingBuilderTest extends TestCase {
     /**
     *  Test a normal reservation.
     */
-    public void testNormal() throws BuilderException, ParseException {
+    @Test
+    public void normal() throws BuilderException, ParseException {
         String s = "Date, November 5, Headcount, 250, City, Springfield, "
                 + "DollarsPerHead, 9.95, HasSite, false";
         ForgivingBuilder b = new ForgivingBuilder();

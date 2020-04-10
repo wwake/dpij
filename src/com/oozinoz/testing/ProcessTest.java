@@ -11,7 +11,8 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.oozinoz.process.ProcessComponent;
 import com.oozinoz.process.ProcessSequence;
@@ -23,7 +24,7 @@ import com.oozinoz.process.ShellProcess;
 *  to model cyclic processes.
 */
 
-public class ProcessTest extends TestCase {
+public class ProcessTest {
     /**
     *  @return a tiny process flow that shows a composite that is
     *  not a tree (but also not a cycle, by the way). In this flow
@@ -54,21 +55,25 @@ public class ProcessTest extends TestCase {
         return a;
     }
 
-    public void testCountOfCycle() {
+    @Test
+    public void countOfCycle() {
         assertEquals(0, cycle().getStepCount());
     }
 
-    public void testStepCountForEmptyProcess() {
+    @Test
+    public void stepCountForEmptyProcess() {
         ProcessSequence nil = new ProcessSequence("nil");
         assertEquals(0, nil.getStepCount());        
     }
-    
-    public void testStepCountForOneStepProcess() {
+
+    @Test
+    public void stepCountForOneStepProcess() {
         ProcessStep uno = new ProcessStep("uno");
         assertEquals(1, uno.getStepCount());
     }
 
-    public void testShampooProcess_ShampooRinseRepeat() {
+    @Test
+    public void shampooProcess_ShampooRinseRepeat() {
         ProcessStep shampoo = new ProcessStep("shampoo");
         ProcessStep rinse = new ProcessStep("rinse");
         ProcessSequence once = new ProcessSequence("once");
@@ -80,11 +85,13 @@ public class ProcessTest extends TestCase {
         assertEquals(2, instructions.getStepCount());
     }
 
-    public void testStepCountForAerialShellProcess() {
+    @Test
+    public void stepCountForAerialShellProcess() {
         assertEquals(4, ShellProcess.make().getStepCount());
     }
 
-    public void testStepCountForNonTreeDirectedAcyclicGraph() {
+    @Test
+    public void stepCountForNonTreeDirectedAcyclicGraph() {
         assertEquals(1, abc().getStepCount());
     }
 
@@ -95,7 +102,8 @@ public class ProcessTest extends TestCase {
     //     / \
     //    b   c
     //
-    public void testSimpleTree() {
+    @Test
+    public void simpleTree() {
         ProcessStep a = new ProcessStep("a");
         ProcessStep b = new ProcessStep("b");
         ProcessStep c = new ProcessStep("c");

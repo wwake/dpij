@@ -16,7 +16,7 @@ import java.lang.reflect.Constructor;
 
 public class ShowReflection {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Constructor<?>[] cc = Point.class.getConstructors();
 
         Constructor<?> cons = null;

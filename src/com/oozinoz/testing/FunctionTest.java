@@ -11,7 +11,8 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.oozinoz.function.Arithmetic;
 import com.oozinoz.function.Constant;
@@ -21,17 +22,19 @@ import com.oozinoz.function.Scale;
 /**
 *  A few tests of Function wrappers.
 */
-public class FunctionTest extends TestCase {
+public class FunctionTest {
     double fuzz = 0.00001;
 
-    public void testConstant() {
+    @Test
+    public void constant() {
         Constant c = new Constant(42);
         assertEquals(42, c.f(0), fuzz);
         assertEquals(42, c.f(0.5), fuzz);
         assertEquals(42, c.f(1), fuzz);
     }
 
-    public void testScale() {
+    @Test
+    public void scale() {
         Function c = new Scale(0, 100); // let Celsius go 0 to 100
         Function f = new Scale(new Constant(0), c, new Constant(100),
                 new Constant(32), new Constant(212));
@@ -41,7 +44,8 @@ public class FunctionTest extends TestCase {
         assertEquals(212, f.f(1), fuzz);
     }
 
-    public void testArithmetic() {
+    @Test
+    public void arithmetic() {
         Function f = new Arithmetic('+', new Constant(3), new Constant(4));
         assertEquals(7, f.f(0), fuzz);
         assertEquals(7, f.f(0.5), fuzz);

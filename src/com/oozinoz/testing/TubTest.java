@@ -11,7 +11,8 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.oozinoz.machine.*;
 
@@ -19,8 +20,9 @@ import com.oozinoz.machine.*;
 *  Test Machine/Tub relationships.
 */
 
-public class TubTest extends TestCase {
-    public void testAddTub() {
+public class TubTest {
+    @Test
+    public void addTub() {
         TubMediator mediator = new TubMediator();
         Tub tub = new Tub("T402", mediator);
         Machine m1 = new Fuser(1, mediator);
@@ -37,7 +39,8 @@ public class TubTest extends TestCase {
         assertEquals(1, m2.getTubs().size());
     }
 
-    public void testLocationChange() {
+    @Test
+    public void locationChange() {
         TubMediator mediator = new TubMediator();
         Tub t = new Tub("T403", mediator);
         Machine m1 = new Fuser(1001, mediator);

@@ -30,11 +30,7 @@ public class Ballistics {
      */
     public static BallisticsFunction rate() {
         if (rate == null) {
-            rate = new BallisticsFunction() {
-                public double function(double t, double tPeak) {
-                    return .5 * Math.pow(25, -Math.pow((t - tPeak), 2));
-                }
-            };
+            rate = (t, tPeak) -> .5 * Math.pow(25, -Math.pow((t - tPeak), 2));
         }
         return rate;
     }
@@ -46,12 +42,8 @@ public class Ballistics {
      */
     public static BallisticsFunction thrust() {
         if (thrust == null) {
-            thrust = new BallisticsFunction() {
-                public double function(double t, double tPeak) {
-                    return 1.7 * Math.pow((rate().function(t, tPeak) / .6),
-                            (1 / .3));
-                }
-            };
+            thrust = (t, tPeak) -> 1.7 * Math.pow((rate().function(t, tPeak) / .6),
+                    (1 / .3));
         }
         return thrust;
     }
