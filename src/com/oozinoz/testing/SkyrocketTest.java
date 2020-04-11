@@ -11,11 +11,11 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 import com.oozinoz.firework.OozinozSkyrocket;
 import com.oozinoz.firework.PhysicalRocket;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
 *  Test the Simulation package and the Fireworks classes that support it.
@@ -43,12 +43,17 @@ public class SkyrocketTest {
 
         double bt = burnDepth / burnRate;
         double tol = 0.01;
-        assertEquals("check burn time", bt, r.getBurnTime(), tol);
+        assertEquals(bt, r.getBurnTime(), tol, "check burn time");
 
-        assertEquals("initial mass", totalMass, r.getMass(0), tol);
-        assertEquals("burnt out mass", totalMass - fuelMass, r.getMass(bt), tol);
-        assertEquals("half mass", totalMass - fuelMass * .5, r.getMass(bt/2), tol);
-        assertEquals("thrust", SPECIFIC_IMPULSE * FUEL_DENSITY * burnArea * burnRate, r.getThrust(bt/2), tol);
+        assertEquals(totalMass, r.getMass(0), tol, "initial mass");
+        assertEquals(totalMass - fuelMass, r.getMass(bt), tol, "burnt out mass");
+        assertEquals(totalMass - fuelMass * .5, r.getMass(bt/2), tol, "half mass");
+
+        assertEquals(
+                SPECIFIC_IMPULSE * FUEL_DENSITY * burnArea * burnRate,
+                r.getThrust(bt/2),
+                tol,
+                "thrust");
     }           
     
     /**
@@ -72,12 +77,12 @@ public class SkyrocketTest {
         double tol = 0.01;
 
         or.setSimTime(0);    
-        assertEquals("initial mass", totalMass, or.getMass(), tol);
-        assertEquals("thrust", SPECIFIC_IMPULSE * FUEL_DENSITY * burnArea * burnRate, or.getThrust(), tol);
+        assertEquals(totalMass, or.getMass(), tol, "initial mass");
+        assertEquals(SPECIFIC_IMPULSE * FUEL_DENSITY * burnArea * burnRate, or.getThrust(), tol, "thrust");
         
         double bt = burnDepth / burnRate;
         or.setSimTime(bt * 1.01); 
-        assertEquals("end mass", totalMass - fuelMass, or.getMass(), tol);
-        assertEquals("thrust", 0, or.getThrust(), tol);
+        assertEquals(totalMass - fuelMass, or.getMass(), tol, "end mass");
+        assertEquals(0, or.getThrust(), tol, "thrust");
     }      
 }

@@ -16,18 +16,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.oozinoz.reservation.BuilderException;
 import com.oozinoz.reservation.ForgivingBuilder;
 import com.oozinoz.reservation.Reservation;
 import com.oozinoz.reservation.ReservationBuilder;
 import com.oozinoz.reservation.ReservationParser;
 import com.oozinoz.utility.Dollars;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
 *  Test that a forgiving builder builds correctly.
@@ -37,7 +37,7 @@ public class ForgivingBuilderTest {
     private Locale savedLocale;
     private Date nextNov5;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // Pick a date definitely in the past: 11-5-2000
         nextNov5 = ReservationBuilder.futurize(new GregorianCalendar(2000, 11 - 1, 5).getTime());
@@ -45,7 +45,7 @@ public class ForgivingBuilderTest {
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         Locale.setDefault(savedLocale);
     }

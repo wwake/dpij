@@ -11,10 +11,11 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 import com.oozinoz.machine.*;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
 *  Test Machine/Tub relationships.

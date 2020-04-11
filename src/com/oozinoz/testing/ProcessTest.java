@@ -11,13 +11,15 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 import com.oozinoz.process.ProcessComponent;
 import com.oozinoz.process.ProcessSequence;
 import com.oozinoz.process.ProcessStep;
 import com.oozinoz.process.ShellProcess;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
 *  Test the ProcessComponent hierarchy, especially its ability

@@ -13,8 +13,9 @@ package com.oozinoz.testing;
 
 import com.oozinoz.utility.Dollars;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DollarsTest {
     @Test

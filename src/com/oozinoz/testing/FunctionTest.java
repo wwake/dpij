@@ -11,13 +11,13 @@ package com.oozinoz.testing;
  * restriction that you may not claim that you wrote it.
  */
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 import com.oozinoz.function.Arithmetic;
 import com.oozinoz.function.Constant;
 import com.oozinoz.function.Function;
 import com.oozinoz.function.Scale;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
 *  A few tests of Function wrappers.

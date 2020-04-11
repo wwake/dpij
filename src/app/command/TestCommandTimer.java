@@ -13,9 +13,9 @@ package app.command;
 
 import com.oozinoz.robotInterpreter.Command;
 import com.oozinoz.utility.CommandTimer;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCommandTimer {
     @Test
@@ -33,8 +33,9 @@ public class TestCommandTimer {
 
         long expected = 2000;
         long delta = 5;
-        assertTrue("Should be " + expected + " +/- " + delta + " ms", 
-                expected - delta <= actual
-             && actual <= expected + delta);
+
+        assertTrue(
+                expected - delta <= actual && actual <= expected + delta,
+                "Should be " + expected + " +/- " + delta + " ms");
     }
 }
