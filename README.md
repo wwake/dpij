@@ -3,6 +3,9 @@ Source code for *[Design Patterns in Java][1]* by Steve Metsker and Bill Wake
 
 [1]: http://www.amazon.com/exec/obidos/ASIN/0321333020/xp123com "Design Patterns in Java"
 
+2020-04-11
+Verified that no source changes needed to run with Java 11 and JUnit 5.4.2. - Bill Wake
+
 2020-04-11 
 Added support for Java 10 and JUnit 5.4.2. - Bill Wake.
 
