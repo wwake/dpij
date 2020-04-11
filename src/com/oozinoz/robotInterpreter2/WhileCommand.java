@@ -22,7 +22,7 @@ public class WhileCommand extends Command {
 
     /**
     *  Construct a "while" command that will execute its body
-    *  as long as the supplied term evaulates to a non-null value.
+    *  as long as the supplied term evaluates to a non-null value.
     *  @param term the term to evaluate on each loop of the while
     *  @param body the body to execute
     */

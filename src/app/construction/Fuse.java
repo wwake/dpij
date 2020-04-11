@@ -11,7 +11,7 @@ package app.construction;
  * restriction that you may not claim that you wrote it.
  */
 
-/** What hapens when you remove the comment from the constructor? */
+/** What happens when you remove the comment from the constructor? */
 
 public class Fuse
 {

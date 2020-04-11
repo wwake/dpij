@@ -14,7 +14,7 @@ package com.oozinoz.iterator;
 import java.util.*;
 
 /**
- * This is the abstract superclass of enmerators that can walk across leaf nodes
+ * This is the abstract superclass of enumerators that can walk across leaf nodes
  * and composite nodes in a composite structure.
  */
 public abstract class ComponentIterator<E> implements Iterator<E> {

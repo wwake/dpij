@@ -14,7 +14,7 @@ package com.oozinoz.machine;
 import com.oozinoz.planning.*;
 
 /**
- * A shell assembler assemebles stars, gunpowder and paper casing into an aerial
+ * A shell assembler assembles stars, gunpowder and paper casing into an aerial
  * shell.
  * 
  * @author Steven J. Metsker

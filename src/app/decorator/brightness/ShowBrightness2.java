@@ -20,7 +20,7 @@ import com.oozinoz.ui.SwingFacade;
  * @author Steven J. Metsker
  */
 public class ShowBrightness2 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         FunPanel panel = new FunPanel();
         panel.setPreferredSize(new java.awt.Dimension(200, 200));
         
