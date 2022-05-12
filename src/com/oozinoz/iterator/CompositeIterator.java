@@ -13,6 +13,7 @@ package com.oozinoz.iterator;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class CompositeIterator<E extends AcycliclyIterable<E>> extends ComponentIterator<E> {
@@ -32,9 +33,13 @@ public class CompositeIterator<E extends AcycliclyIterable<E>> extends Component
     }
 
     public boolean hasNext() {
-        if (peek == null) 
-            peek = next();
-        return peek != null;
+        try {
+            if (peek == null)
+                peek = next();
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
     }
 
     public E next() {
@@ -65,7 +70,7 @@ public class CompositeIterator<E extends AcycliclyIterable<E>> extends Component
                 if (subiterator.hasNext()) return subiterator.next();
             }
 
-            if (!children.hasNext()) return null;
+            if (!children.hasNext()) throw new NoSuchElementException("No next element");
 
             E pc = children.next();
             if (!visited.contains(pc)) {
