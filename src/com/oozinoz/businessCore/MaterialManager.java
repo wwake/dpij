@@ -12,7 +12,7 @@ package com.oozinoz.businessCore;
  */
 
 /**
- * This class is a mock up of a class that would run on an an Aster star press
+ * This class is a mockup of a class that would run on an Aster star press
  * and that would somehow connect Oozinoz systems that store information about
  * material.
  */

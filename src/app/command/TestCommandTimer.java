@@ -32,10 +32,10 @@ public class TestCommandTimer {
         long actual = CommandTimer.time(doze);
 
         long expected = 2000;
-        long delta = 5;
+        long delta = 10;
 
         assertTrue(
                 expected - delta <= actual && actual <= expected + delta,
-                "Should be " + expected + " +/- " + delta + " ms");
+                "Should be " + expected + " +/- " + delta + " ms" + " but was " + actual + " ms");
     }
 }

@@ -20,7 +20,7 @@ public class DoorOpen extends DoorState {
     }
 
     /**
-     * This is a nonintuitive behavior of the "one touch" system. Once open the
+     * This is a non-intuitive behavior of the "one touch" system. Once open the
      * door will begin closing automatically after a few seconds (the timeout).
      * You can prevent this with an extra touch that indicates the door should
      * remain open.
