@@ -11,6 +11,7 @@ package com.oozinoz.iterator;
  * restriction that you may not claim that you wrote it.
  */
 
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class LeafIterator<E> extends ComponentIterator<E> {
@@ -27,7 +28,7 @@ public class LeafIterator<E> extends ComponentIterator<E> {
     }
 
     public E next() {
-        if (visited.contains(head)) return null;
+        if (visited.contains(head)) throw new NoSuchElementException("No next element");
 
         visited.add(head);
         return head;
