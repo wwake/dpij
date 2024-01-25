@@ -12,6 +12,7 @@ package com.oozinoz.imaging;
  */
 
 import java.awt.*;
+import java.io.File;
 import javax.swing.*;
 
 /**
@@ -22,11 +23,15 @@ import javax.swing.*;
  * @see LoadingImageIcon
  */
 public class ImageIconProxy extends ImageIcon implements Runnable {
-    static final ImageIcon ABSENT = new ImageIcon(ClassLoader.getSystemResource("resources/images/absent.jpg"));
-    static final ImageIcon LOADING = new ImageIcon(ClassLoader.getSystemResource("resources/images/loading.jpg"));
+    static final ImageIcon ABSENT = new ImageIcon(ImageIconProxy.path("resources/images/absent.jpg"));
+    static final ImageIcon LOADING = new ImageIcon(ImageIconProxy.path("resources/images/loading.jpg"));
     ImageIcon current = ABSENT;
     protected String filename;
     protected JFrame callbackFrame;
+
+    static String path(String filename) {
+        return new File("").getAbsolutePath() + "/" + filename;
+    }
 
     /**
      * Construct an ImageIconProxy that will (on demand) load the image in the
@@ -53,7 +58,7 @@ public class ImageIconProxy extends ImageIcon implements Runnable {
      * Load the desired image (presumably in a separate thread).
      */
     public void run() {
-        current = new ImageIcon(ClassLoader.getSystemResource(filename));
+        current = new ImageIcon(ImageIconProxy.path(filename));
         callbackFrame.pack();
     }
     

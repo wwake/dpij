@@ -13,9 +13,12 @@ package app.proxy;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import javax.swing.*;
 import com.oozinoz.ui.*;
 import com.oozinoz.imaging.*;
+
+import static java.lang.System.out;
 
 /**
  * Show the use of ImageIconLoader, a class that shows the intent of the Proxy
@@ -50,6 +53,16 @@ public class ShowLoader implements ActionListener {
      * Show the use of ImageIconLoader.
      */
     public static void main(String[] args) {
+            String currentDir = System.getProperty("user.dir");
+            System.out.println("Current dir using System:" + currentDir);
+
+        String tempPath = new File("").getAbsolutePath();
+        String result=tempPath+"/sample.txt";
+
+
+        //var result = ClassLoader.getSystemResource(currentDir + "/sample.txt");
+        out.println("result = " + result);
+
         ShowLoader sl = new ShowLoader();
         sl.frame = SwingFacade.launch(sl.mainPanel(), " Proxy");
     }

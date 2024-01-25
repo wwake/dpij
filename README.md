@@ -3,6 +3,10 @@ Source code for *[Design Patterns in Java][1]* by Steve Metsker and Bill Wake
 
 [1]: http://www.amazon.com/exec/obidos/ASIN/0321333020/xp123com "Design Patterns in Java"
 
+2024-01-25
+Verified no source changes needed for Java 20 and JUnit 5.8.1. 
+Changed use of ClassLoader.getSystemResource() to use File's getAbsolutePath(). - Bill Wake
+
 2022-12-26
 Verified no source changes needed for Java 19 and JUnit 5.9.1. - Bill Wake
 
@@ -12,7 +16,7 @@ Verified no source changes needed for Java 17 and JUnit 5.9.1. - Bill Wake
 2022-12-26
 Verified no source changes needed to run with Java 17 and JUnit 5.4.2. - Bill Wake
 
-2020-04-11
+2020-04-11K
 Verified that no source changes needed to run with Java 14 and JUnit 5.4.2. - Bill Wake
 
 2020-04-11

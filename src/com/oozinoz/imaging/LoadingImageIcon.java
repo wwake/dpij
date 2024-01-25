@@ -13,6 +13,7 @@ package com.oozinoz.imaging;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import java.io.File;
 
 /**
  * This class acts as an ImageIcon that can have three images: an 'absent'
@@ -20,10 +21,14 @@ import javax.swing.JFrame;
  * @author Steven J. Metsker
  */
 public class LoadingImageIcon extends ImageIcon implements Runnable {
-    static final ImageIcon ABSENT = new ImageIcon(ClassLoader.getSystemResource("resources/images/absent.jpg"));
-    static final ImageIcon LOADING = new ImageIcon(ClassLoader.getSystemResource("resources/images/loading.jpg"));
+    static final ImageIcon ABSENT = new ImageIcon(LoadingImageIcon.path("resources/images/absent.jpg"));
+    static final ImageIcon LOADING = new ImageIcon(LoadingImageIcon.path("resources/images/loading.jpg"));
     protected String filename;
     protected JFrame callbackFrame;
+
+    static String path(String filename) {
+        return new File("").getAbsolutePath() + "/" + filename;
+    }
 
     /**
      * Construct an ImageIconLoader that will (on demand) load the image in the
@@ -50,7 +55,7 @@ public class LoadingImageIcon extends ImageIcon implements Runnable {
      * Load the desired image (presumably in a separate thread).
      */
     public void run() {
-        setImage(new ImageIcon(ClassLoader.getSystemResource(filename)).getImage());
+        setImage(new ImageIcon(LoadingImageIcon.path(filename)).getImage());
         callbackFrame.pack();
     }
 }
